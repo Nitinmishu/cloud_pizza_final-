@@ -108,7 +108,7 @@ if is_aws_environment:
     AWS_STORAGE_BUCKET_NAME = 'mypizzabucket'
     AWS_S3_REGION_NAME = 'us-east-1'
     AWS_S3_FILE_OVERWRITE = False
-    AWS_S3_VERIFY = False
+    AWS_S3_VERIFY = True
     AWS_QUERYSTRING_AUTH = False
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
