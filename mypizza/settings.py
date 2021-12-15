@@ -91,8 +91,16 @@ DATABASES = {
 }
 # TODO : add postgres creds
 if is_aws_environment:
-    pass
-
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'pizzadb',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'pizzadatabase.cnr8zwlnoghr.us-east-1.rds.amazonaws.com',
+            'POST': '5432',
+        }
+    }
 if is_aws_environment:
     AWS_ACCESS_KEY_ID = os.environ.setdefault('aws_access_key_id', '')
     AWS_SECRET_ACCESS_KEY = os.environ.setdefault('aws_secret_access_key', '')
