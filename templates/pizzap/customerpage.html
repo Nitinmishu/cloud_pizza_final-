@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<nav class="navbar navbar-dark bg-dark" style="padding: 16px 24px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; width: 100%">
+        <a class="navbar-brand">WELCOME TO PIZZA-PALACE</a>
+        <a class="btn btn-danger" href="/logoutuser/">LOGOUT</a>
+    </div>
+    <div style="display: flex; justify-content: center;    width: 100%;
+    opacity: 0.5;">
+        <a class="navbar-item" href="/userorder/"
+           style="text-transform: uppercase; font-weight: bold; color: #fff; text-decoration: none;">{{username }}'s
+            ORDER </a>
+    </div>
+</nav>
+
+
+{% for message in messages %}
+<p style="color:green;text-align:center">{{message}}</p>
+{% endfor %}
+<form method='post' , action="/orderplaced/">
+    {% csrf_token %}
+    <div class="conatiner" style="
+    width: 80%;
+    margin: 48px auto;">
+        <div style="display: flex; flex-wrap: wrap;">
+            {% for pizza in pizzas %}
+            <div style="width: 28%;
+                        min-height: 280px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        border: 1px solid #eee;
+                        box-shadow: 0 2px 10px rgb(0 0 0 / 11%);
+                        margin-right: 24px;
+                        padding: 16px;
+                        margin-bottom: 24px">
+                <div style="font-size:  20px;
+                            font-weight: bold;
+                            letter-spacing: 0.5px;
+                            color: red;
+                            margin-bottom: 16px;">
+                    {{pizza.name}}
+                </div>
+                <img src="{{ pizza.thumbnail.url }}" style="height: 90%; width: 90%;"/>
+                <div style="margin: 16px 0;">€ {{pizza.price}}</div>
+                <input type="number" min="0" value="0" name='{{pizza.id}}' style='width: 60px' name="Quantity">
+            </div>
+            {% endfor %}
+        </div>
+        <div>
+            <textarea placeholder="address" style="margin-top: 90px; width:50%; padding: 12px"
+                      name="address"></textarea>
+        </div>
+        <input type="submit" style="margin-top: 24px" class='btn btn-success' value='Place Order' name=''>
+    </div>
+</form>
+
+
+{% endblock %}  

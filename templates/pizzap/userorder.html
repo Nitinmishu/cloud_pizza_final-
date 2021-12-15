@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<nav class="navbar navbar-dark bg-dark" style="padding: 16px 24px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; width: 100%">
+        <a class="navbar-brand">WELCOME TO PIZZA-PALACE</a>
+        <a class="btn btn-danger" href="/logoutuser/">LOGOUT</a>
+    </div>
+    <div style="display: flex; justify-content: center; width: 100%;
+    opacity: 0.5; color: #fff; font-size: 20px;">
+		My Orders
+    </div>
+</nav>
+<div style="display: flex; flex-direction: column; margin: 48px auto; width: 80%">
+{% for order in orders %}
+	<div style="border: 1px solid #eee;
+    	box-shadow: 0 2px 10px rgb(0 0 0 / 11%); margin-bottom: 24px; padding: 16px;" role = "alert">
+		<p style="font-weight: bold; text-align: center; font-size: 20px;">Order #{{order.id}}</p>
+		<p>{{order.address}}</p>
+		<p>{{order.item_ordered}}</p>
+		<p>€ {{order.total_amount}}</p>
+		<p>Order status : {{order.status}}</p>
+	</div>
+{% endfor %}
+</div>
+{% endblock %}
