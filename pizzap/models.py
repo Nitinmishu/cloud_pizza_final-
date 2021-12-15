@@ -38,10 +38,10 @@ class Customer(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
-    address = models.CharField(max_length=10)
-    item_ordered = models.CharField(max_length=10)
+    address = models.CharField(max_length=100)
+    item_ordered = models.CharField(max_length=100)
     status = models.CharField(max_length=10)
-    total_amount = models.CharField(max_length=10)
+    total_amount = models.CharField(max_length=100)
 
     class Meta:
         verbose_name = "Order"
