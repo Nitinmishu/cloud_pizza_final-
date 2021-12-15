@@ -3,7 +3,7 @@ from django.db import models
 from thumbnailerist.thumbnail import Photo
 
 
-class Pizza(Photo):
+class Pizza(Photo): #table for the pizza menu is created along with the photo and thumbnail
     name = models.CharField(max_length=10)
     price = models.CharField(max_length=10)
     ingredients = models.ManyToManyField('Ingredient')
@@ -16,7 +16,7 @@ class Pizza(Photo):
         verbose_name_plural = "Pizzas"
 
 
-class Ingredient(models.Model):
+class Ingredient(models.Model): # creating table for all the ingredients to be used
     name = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
@@ -27,7 +27,7 @@ class Ingredient(models.Model):
         verbose_name_plural = "Ingredients"
 
 
-class Customer(models.Model):
+class Customer(models.Model): # table created with customer details
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     phone_no = models.CharField(max_length=15)
 
@@ -36,7 +36,7 @@ class Customer(models.Model):
         verbose_name_plural = "Customers"
 
 
-class Order(models.Model):
+class Order(models.Model): #table created for all the orders
     customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
     address = models.CharField(max_length=100)
     item_ordered = models.CharField(max_length=100)
